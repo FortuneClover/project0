@@ -1,4 +1,5 @@
 # import re
+import current
 business_cardlist=[{'name': 'hong', 'phone': '000-0000-0000', 'email': 'hong@gmail.com', 'company': 'S', 'memo' : list('work on S')},
           {'name': 'kim', 'phone': '111-1111-1111', 'email': 'kim@gmail.com', 'company': 'A', 'memo' : list('work on A')},
           {'name': 'lee', 'phone': '222-2222-2222', 'email': 'lee@gmail.com', 'company': 'B', 'memo' : list('work on B')},
@@ -49,13 +50,8 @@ while True:
         page = len(business_cardlist)-1
 
     elif choice=="C":
-        print("현재 명함 정보 조회")
-        if page >= 0:
-            print('현재 페이지는 {}페이지 입니다.'.format(page+1))
-            print(business_cardlist[page])
-        else:
-            print('입력된 내용이 없습니다.')
-        
+        current.current(business_cardlist, page)
+
     elif choice == 'P':
         print("이전 명함 정보 조회")
         if page <= 0:
@@ -107,7 +103,7 @@ while True:
             for i in range(0,len(business_cardlist)):
                 if business_cardlist[i]['email'] == choice1:
                     idx=i
-                    
+
             if idx==-1:
                 print('등록되지 않은 전화번호입니다.')       
                 break
