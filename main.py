@@ -1,8 +1,8 @@
 # import re
-business_cardlist=[{'name': 'hong', 'gender': 'M', 'email': 'hong@gmail.com', 'company': 'S'},
-          {'name': 'kim', 'gender': 'F', 'email': 'kim@gmail.com', 'company': 'A'},
-          {'name': 'lee', 'gender': 'M', 'email': 'lee@gmail.com', 'company': 'B'},
-          {'name': 'han', 'gender': 'F', 'email': 'han@gmail.com', 'company': 'C'}]
+business_cardlist=[{'name': 'hong', 'phone': '000-0000-0000', 'email': 'hong@gmail.com', 'company': 'S', 'memo' : list('work on S')},
+          {'name': 'kim', 'phone': '111-1111-1111', 'email': 'kim@gmail.com', 'company': 'A', 'memo' : list('work on A')},
+          {'name': 'lee', 'phone': '222-2222-2222', 'email': 'lee@gmail.com', 'company': 'B', 'memo' : list('work on B')},
+          {'name': 'han', 'phone': '333-3333-3333', 'email': 'han@gmail.com', 'company': 'C', 'memo' : list('work on C')}]
 page=3
 
 while True:
@@ -12,19 +12,19 @@ while True:
     C - 현재 명함 정보 조회
     P - 이전 명함 정보 조회
     N - 다음 명함 정보 조회
-    U - 명함 정보 수정
     D - 명함 정보 삭제
+    M - 명함 메모 추가
     Q - 프로그램 종료
     ''').upper() 
 
     if choice=="I":        
         print("명함 정보 입력")
-        card={'name':'','phone':'',"email":'',"company":''}
+        card={'name':'','phone':'',"email":'',"company":'', "memo" : list()}
         card['name'] = input('이름 >>> ')
 
         while True:
-            card['phone'] = input('성별(M,F) >>> ').upper()
-            if card['phone'] in ('M','F'):
+            card['phone'] = input('phone number >>> ')
+            if len(card['phone']) == 13 :
                 break
 
         while True:
@@ -38,11 +38,9 @@ while True:
                 break  
             print('중복되는 이메일이 있습니다.')  
 
-        while True:
-            card['company'] = input('회사명 ')
-            if card['company'].isdigit() and len(card['company']) == 4 :
-                card['company'] = int(card['company'])
-                break
+        card['company'] = input('회사명 ')
+        card['memo'] = input('메모 ')
+        
 
         print(card)
         business_cardlist.append(card)
@@ -89,8 +87,8 @@ while True:
             print('등록되지 않은 이메일입니다.')
         print(business_cardlist)
         page = len(business_cardlist)-1
-    elif choice=="U": 
-        print("명함 정보 수정")
+    elif choice=="M": 
+        print("명함 메모 추가")
         while True:
             choice1=input('수정하시려는 명함 정보의 이메일을 입력하세요 : ') # 이메일 존재 여부 체크 필요
             idx=-1
@@ -103,10 +101,10 @@ while True:
                         
             choice2=input('''
             다음 중 수정하실 정보를 골라주세요 
-                    name, gender, company
+                    name, phone, company
             (수정할 정보가 없으면 'exit' 입력)
             ''')
-            if choice2 in ('name','gender','company'):
+            if choice2 in ('name','phone','company'):
                 business_cardlist[idx][choice2]=input('수정할 {}을 입력하세요 :'.format(choice2))
                 break
             elif choice2 =='exit':
