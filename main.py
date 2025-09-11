@@ -74,12 +74,23 @@ while True:
             page += 1
             print("현재 페이지는 {}쪽 입니다".format(page + 1))
             print(business_cardlist[page])
+
+    elif choice == 'F':
+        print("명함 검색")
+        find = input("찾으시는 명함의 전화번호를 입력해주세요.")
+        for idx, i in enumerate(business_cardlist):
+            if i['phone'] == find:
+                data = business_cardlist.pop(idx)
+                print('{}'.format(data['memo']))
+                break
+            
+
     elif choice=='D':
         print("명함 정보 삭제")
-        email = input('삭제하려는 명함의 전화번호를 입력하세요 >>> ').strip()
+        phone = input('삭제하려는 명함의 전화번호를 입력하세요 >>> ').strip()
         delok = 0
         for idx,i in enumerate(business_cardlist):
-            if i['email'] == email:
+            if i['phone'] == phone:
                 data = business_cardlist.pop(idx)
                 print('{}님의 정보가 삭제되었습니다.'.format(data['phone']))
                 delok=1
