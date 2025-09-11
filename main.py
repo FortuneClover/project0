@@ -21,7 +21,7 @@ while True:
 
     if choice=="I":        
         print("명함 정보 입력")
-        card={'name':'','phone':'',"email":'',"company":'', "memo" : list()}
+        card={'name':'','phone':'',"email":'',"company":'', "memo" : []}
         card['name'] = input('이름 >>> ')
 
         while True:
