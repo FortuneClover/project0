@@ -25,13 +25,18 @@ while True:
         card['name'] = input('이름 >>> ')
 
         while True:
-            card['phone'] = input('phone number >>> ')
-            if len(card['phone']) == 13 :
+            card['phone'] = input('휴대전화 번호(-없이 입력) >>> ')
+            if len(card['phone']) == 11 :
                 break
+            else:
+                print("11자리의 숫자만 입력 가능합니다.")
 
         while True:
             card['email'] = input('email >>> ')
             check = 0
+            if '@' not in card['email']:
+                print("-> 올바른 이메일 형식이 아닙니다.")
+                continue
             for item in business_cardlist:
                 if item['email'] == card['email']:
                     check=1
@@ -41,6 +46,7 @@ while True:
             print('중복되는 이메일이 있습니다.')  
 
         card['company'] = input('회사명 ')
+        
         card['memo'] = input('메모 ')
         
 
