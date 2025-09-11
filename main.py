@@ -12,6 +12,7 @@ while True:
     C - 현재 명함 정보 조회
     P - 이전 명함 정보 조회
     N - 다음 명함 정보 조회
+    F - 명함 검색
     D - 명함 정보 삭제
     M - 명함 메모 추가
     Q - 프로그램 종료
@@ -75,43 +76,32 @@ while True:
             print(business_cardlist[page])
     elif choice=='D':
         print("명함 정보 삭제")
-        email = input('삭제하려는 명함의 이메일을 입력하세요 >>> ').strip()
+        email = input('삭제하려는 명함의 전화번호를 입력하세요 >>> ').strip()
         delok = 0
         for idx,i in enumerate(business_cardlist):
             if i['email'] == email:
                 data = business_cardlist.pop(idx)
-                print('{}님의 정보가 삭제되었습니다.'.format(data['name']))
+                print('{}님의 정보가 삭제되었습니다.'.format(data['phone']))
                 delok=1
                 break
         if delok == 0:
-            print('등록되지 않은 이메일입니다.')
+            print('등록되지 않은 전화번호입니다.')
         print(business_cardlist)
         page = len(business_cardlist)-1
     elif choice=="M": 
         print("명함 메모 추가")
         while True:
-            choice1=input('수정하시려는 명함 정보의 이메일을 입력하세요 : ') # 이메일 존재 여부 체크 필요
+            choice1=input('수정하시려는 명함 정보의 전화번호를 입력하세요 : ')
             idx=-1
             for i in range(0,len(business_cardlist)):
                 if business_cardlist[i]['email'] == choice1:
                     idx=i
             if idx==-1:
-                print('등록되지 않은 이메일입니다.')       
+                print('등록되지 않은 전화번호입니다.')       
                 break
                         
-            choice2=input('''
-            다음 중 수정하실 정보를 골라주세요 
-                    name, phone, company
-            (수정할 정보가 없으면 'exit' 입력)
-            ''')
-            if choice2 in ('name','phone','company'):
-                business_cardlist[idx][choice2]=input('수정할 {}을 입력하세요 :'.format(choice2))
-                break
-            elif choice2 =='exit':
-                break
-            else:
-                print('존재하지 않는 정보입니다.')
-                break
+            business_cardlist[idx]["memo"].append(input('수정할 메모의 내용을 입력하세요 :'))
+            
     elif choice=="Q":
         print("프로그램 종료")
         break
