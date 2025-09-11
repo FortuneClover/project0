@@ -18,6 +18,7 @@ while True:
     Q - 프로그램 종료
     ''').upper() 
 
+
     if choice=="I":        
         print("명함 정보 입력")
         card={'name':'','phone':'',"email":'',"company":'', "memo" : list()}
