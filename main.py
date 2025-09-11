@@ -107,6 +107,7 @@ while True:
             for i in range(0,len(business_cardlist)):
                 if business_cardlist[i]['email'] == choice1:
                     idx=i
+                    
             if idx==-1:
                 print('등록되지 않은 전화번호입니다.')       
                 break
