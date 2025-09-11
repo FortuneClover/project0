@@ -1,8 +1,9 @@
 # import re
-business_cardlist=[{'name': 'hong', 'phone': '000-0000-0000', 'email': 'hong@gmail.com', 'company': 'S', 'memo' : list('work on S')},
-          {'name': 'kim', 'phone': '111-1111-1111', 'email': 'kim@gmail.com', 'company': 'A', 'memo' : list('work on A')},
-          {'name': 'lee', 'phone': '222-2222-2222', 'email': 'lee@gmail.com', 'company': 'B', 'memo' : list('work on B')},
-          {'name': 'han', 'phone': '333-3333-3333', 'email': 'han@gmail.com', 'company': 'C', 'memo' : list('work on C')}]
+import searching
+business_cardlist=[{'name': 'hong', 'phone': '000-0000-0000', 'email': 'hong@gmail.com', 'company': 'S', 'memo' : ['work on S']},
+          {'name': 'kim', 'phone': '111-1111-1111', 'email': 'kim@gmail.com', 'company': 'A', 'memo' : ['work on A']},
+          {'name': 'lee', 'phone': '222-2222-2222', 'email': 'lee@gmail.com', 'company': 'B', 'memo' : ['work on B']},
+          {'name': 'han', 'phone': '333-3333-3333', 'email': 'han@gmail.com', 'company': 'C', 'memo' : ['work on C']}]
 page=3
 
 while True:
@@ -83,13 +84,7 @@ while True:
             print(business_cardlist[page])
 
     elif choice == 'F':
-        print("명함 검색")
-        find = input("찾으시는 명함의 전화번호를 입력해주세요.")
-        for idx, i in enumerate(business_cardlist):
-            if i['phone'] == find:
-                data = business_cardlist.pop(idx)
-                print('{}'.format(data['memo']))
-                break
+        searching.searching(business_cardlist)
             
 
     elif choice=='D':
