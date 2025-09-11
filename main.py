@@ -1,5 +1,7 @@
 # import re
 import current
+import past
+
 business_cardlist=[{'name': 'hong', 'phone': '000-0000-0000', 'email': 'hong@gmail.com', 'company': 'S', 'memo' : list('work on S')},
           {'name': 'kim', 'phone': '111-1111-1111', 'email': 'kim@gmail.com', 'company': 'A', 'memo' : list('work on A')},
           {'name': 'lee', 'phone': '222-2222-2222', 'email': 'lee@gmail.com', 'company': 'B', 'memo' : list('work on B')},
@@ -53,14 +55,9 @@ while True:
         current.current(business_cardlist, page)
 
     elif choice == 'P':
-        print("이전 명함 정보 조회")
-        if page <= 0:
-            print('첫번째 페이지 입니다.')
-            print(business_cardlist[page])
-        else:
-            page -= 1
-            print('현재 페이지는 {}페이지 입니다.'.format(page+1))
-            print(business_cardlist[page])
+        past.past(business_cardlist, page)
+
+
     elif choice == 'N':
         print("다음 명함 정보 조회")
         if page >= len(business_cardlist)-1:
